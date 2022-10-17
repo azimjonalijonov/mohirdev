@@ -25,7 +25,7 @@ public interface EmployeeRepository extends JpaRepository<Employee,Long>{
     @Query(value = "SELECT e from Employee  e where e.name like :name",nativeQuery = true)
     List<Employee> findAllByName(String name);
 
-    @Query("select e FROM Employee e where  Upper(e.name) like concat(:name,'%')")
+    @Query("select e FROM Employee e where  upper(e.name) like upper( concat('%',:name,'%')) order  by e.id desc ")
     List<Employee> findByName(String name);
 
     List<Employee> findAllByNameStartingWith(String name);
